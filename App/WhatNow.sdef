@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="What Now Terminology">
+
+    <suite name="Standard Suite" code="????" description="Common terminology.">
+        <cocoa name="NSCoreSuite"/>
+        <class name="application" code="capp" description="The What Now application.">
+            <cocoa class="NSApplication"/>
+            <element type="task" access="r">
+                <cocoa key="tasks"/>
+            </element>
+        </class>
+    </suite>
+
+    <suite name="What Now Suite" code="WNw1" description="What Now task scripting.">
+
+        <class name="task" code="WNtk" description="A task stored in What Now.">
+            <cocoa class="WNTaskScriptingObject"/>
+            <property name="id" code="ID  " type="text" access="r" description="Unique identifier.">
+                <cocoa key="id"/>
+            </property>
+            <property name="title" code="pnam" type="text" description="Task title.">
+                <cocoa key="title"/>
+            </property>
+            <property name="description" code="desc" type="text" description="Optional description.">
+                <cocoa key="taskDescription"/>
+            </property>
+            <property name="due date" code="dueD" type="date" description="Optional due date, within 7 days.">
+                <cocoa key="dueAt"/>
+            </property>
+            <property name="created at" code="crAt" type="date" access="r">
+                <cocoa key="createdAt"/>
+            </property>
+            <property name="updated at" code="upAt" type="date" access="r">
+                <cocoa key="updatedAt"/>
+            </property>
+            <property name="completed" code="cmpl" type="boolean" description="Whether the task is completed.">
+                <cocoa key="completed"/>
+            </property>
+            <property name="completed at" code="cmAt" type="date" access="r">
+                <cocoa key="completedAt"/>
+            </property>
+        </class>
+
+        <command name="add task" code="WNw1addT" description="Create a new task.">
+            <cocoa class="WNAddTaskCommand"/>
+            <direct-parameter type="text" optional="yes" description="Title of the task."/>
+            <parameter name="title" code="pnam" type="text" optional="yes" description="Title of the task.">
+                <cocoa key="title"/>
+            </parameter>
+            <parameter name="description" code="desc" type="text" optional="yes">
+                <cocoa key="details"/>
+            </parameter>
+            <parameter name="due date" code="dueD" type="date" optional="yes">
+                <cocoa key="dueAt"/>
+            </parameter>
+            <result type="task"/>
+        </command>
+
+        <command name="complete task" code="WNw1cmpT" description="Mark a task as completed.">
+            <cocoa class="WNCompleteTaskCommand"/>
+            <direct-parameter description="The task (or its id).">
+                <type type="task"/>
+                <type type="text"/>
+            </direct-parameter>
+            <result type="task"/>
+        </command>
+
+        <command name="uncomplete task" code="WNw1uncT" description="Mark a task as not completed.">
+            <cocoa class="WNUncompleteTaskCommand"/>
+            <direct-parameter description="The task (or its id).">
+                <type type="task"/>
+                <type type="text"/>
+            </direct-parameter>
+            <result type="task"/>
+        </command>
+
+        <command name="delete task" code="WNw1delT" description="Delete a task.">
+            <cocoa class="WNDeleteTaskCommand"/>
+            <direct-parameter description="The task (or its id).">
+                <type type="task"/>
+                <type type="text"/>
+            </direct-parameter>
+        </command>
+
+    </suite>
+
+</dictionary>
